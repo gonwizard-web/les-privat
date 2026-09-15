@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Rapor & Les Privat</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --gray-text: #6b7280;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-danger {
+            background-color: #ef4444;
+        }
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Dashboard Style */
+        .info-card {
+            background: #eef2ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .info-card p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+        }
+
+        .history-item {
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin-bottom: 6px;
+        }
+
+        .history-materi {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .history-nilai {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .history-catatan {
+            font-size: 0.9rem;
+            color: #4b5563;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Bagian Login Orang Tua -->
+    <div id="login-section">
+        <h2>📚 Les Privat Kelas 2 SD</h2>
+        <p class="subtitle">Portal Cek Rapor & Perkembangan Belajar</p>
+        
+        <div class="form-group">
+            <label for="idInput">ID Murid</label>
+            <input type="text" id="idInput" placeholder="Contoh: M001">
+        </div>
+        
+        <div class="form-group">
+            <label for="pinInput">PIN / Kode Akses</label>
+            <input type="password" id="pinInput" placeholder="Masukkan PIN rahasia">
+        </div>
+        
+        <button onclick="login()">Masuk ke Rapor</button>
+        <p id="errorMsg" class="error-msg"></p>
+    </div>
+
+    <!-- Bagian Dashboard Rapor Siswa -->
+    <div id="result-section" class="hidden">
+        <h2 id="namaAnak">Nama Anak</h2>
+        <p class="subtitle" id="infoKelas">Kelas 2 SD</p>
+        
+        <div class="info-card">
+            <p><strong>Total Paket Sesi:</strong> <span id="totalSesi">0</span> Pertemuan</p>
+            <p><strong>Sesi Terpakai:</strong> <span id="sesiTerpakai">0</span> Pertemuan</p>
+            <p><strong>Sisa Kuota Sesi:</strong> <span id="sisaSesi" style="color: var(--primary-color); font-weight: bold;">0</span> Pertemuan</p>
+        </div>
+
+        <h3 style="font-size: 1.1rem; margin-bottom: 10px;">📋 Riwayat Belajar & Nilai</h3>
+        <div id="riwayatList">
+            <!-- Data riwayat akan dimasukkan otomatis lewat JavaScript -->
+        </div>
+
+        <button class="btn-danger" onclick="logout()">Keluar</button>
+    </div>
+</div>
+
+<script>
+    /* ==========================================================================
+       DATABASE SEDERHANA
+       Cara Update: Anda cukup mengubah/menambah data di bawah ini langsung 
+       di file ini setiap kali ada murid baru atau ada nilai les yang bertambah.
+       ========================================================================== */
+    const database = {
+        "M001": {
+            nama: "Budi Santoso",
+            pin: "1234",
+            total_sesi: 8,
+            sesi_terpakai: 2,
+            riwayat: [
+                {
+                    tanggal: "15 September 2026",
+                    materi: "Penjumlahan & Pengurangan Bersusun",
+                    nilai: "85",
+                    catatan: "Budi sudah sangat aktif dan paham cara menyimpan, pertahankan!"
+                },
+                {
+                    tanggal: "12 September 2026",
+                    materi: "Membaca Nyaring & Kosakata",
+                    nilai: "80",
+                    catatan: "Pelafalan sudah bagus, perlu latihan sedikit di kata berimbuhan."
+                }
+            ]
+        },
+        "M002": {
+            nama: "Ani Lestari",
+            pin: "5678",
+            total_sesi: 8,
+            sesi_terpakai: 1,
+            riwayat: [
+                {
+                    tanggal: "14 September 2026",
+                    materi: "Latihan Calistung Dasar",
+                    nilai: "90",
+                    catatan: "Ani sangat teliti dalam mengerjakan soal latihan matematika."
+                }
+            ]
+        }
+    };
+
+    function login() {
+        let id = document.getElementById("idInput").value.trim().toUpperCase();
+        let pin = document.getElementById("pinInput").value.trim();
+        let errorMsg = document.getElementById("errorMsg");
+
+        if (database[id] && database[id].pin === pin) {
+            let data = database[id];
+            let sisa = data.total_sesi - data.sesi_terpakai;
+
+            // Masukkan data ke tampilan web
+            document.getElementById("namaAnak").innerText = data.nama;
+            document.getElementById("totalSesi").innerText = data.total_sesi;
+            document.getElementById("sesiTerpakai").innerText = data.sesi_terpakai;
+            document.getElementById("sisaSesi").innerText = sisa;
+
+            // Buat list riwayat belajar
+            let htmlRiwayat = "";
+            if (data.riwayat.length > 0) {
+                data.riwayat.forEach(item => {
+                    htmlRiwayat += `
+                        <div class="history-item">
+                            <div class="history-header">
+                                <span>📅 ${item.tanggal}</span>
+                            </div>
+                            <div class="history-materi">${item.materi}</div>
+                            <div class="history-nilai">Nilai: ${item.nilai}</div>
+                            <div class="history-catatan">💬 "${item.catatan}"</div>
+                        </div>
+                    `;
+                });
+            } else {
+                htmlRiwayat = "<p style='text-align:center; color:var(--gray-text);'>Belum ada riwayat pertemuan.</p>";
+            }
+            document.getElementById("riwayatList").innerHTML = htmlRiwayat;
+
+            // Sembunyikan form login, tampilkan dashboard
+            document.getElementById("login-section").classList.add("hidden");
+            document.getElementById("result-section").classList.remove("hidden");
+            errorMsg.innerText = "";
+        } else {
+            errorMsg.innerText = "ID Murid atau PIN salah! Periksa kembali.";
+        }
+    }
+
+    function logout() {
+        document.getElementById("idInput").value = "";
+        document.getElementById("pinInput").value = "";
+        document.getElementById("login-section").classList.remove("hidden");
+        document.getElementById("result-section").classList.add("hidden");
+    }
+</script>
+
+</body>
+</html>
