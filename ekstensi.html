@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Admin & Master Dashboard</title>
+    <!-- Tailwind CSS CDN untuk UI Modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-slate-900 text-slate-300 hidden md:flex flex-col justify-between">
+            <div>
+                <div class="px-6 py-5 text-xl font-bold text-white flex items-center gap-3 border-b border-slate-800">
+                    <i class="fa-solid fa-cube text-indigo-500"></i>
+                    <span>AdminPanel</span>
+                </div>
+                <nav class="p-4 space-y-1">
+                    <a href="#" onclick="switchTab('dashboard')" id="nav-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-indigo-600 transition">
+                        <i class="fa-solid fa-chart-pie"></i> Dashboard
+                    </a>
+                    <a href="#" onclick="switchTab('master')" id="nav-master" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition">
+                        <i class="fa-solid fa-database"></i> Master Data
+                    </a>
+                    <a href="#" onclick="switchTab('settings')" id="nav-settings" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition">
+                        <i class="fa-solid fa-gear"></i> Pengaturan Web
+                    </a>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-slate-800">
+                <div class="flex items-center gap-3 px-4 py-2">
+                    <div class="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white font-semibold">FA</div>
+                    <div>
+                        <p class="text-sm font-medium text-white">Administrator</p>
+                        <p class="text-xs text-slate-400">admin@system.com</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- TOPNAV -->
+            <header class="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-10">
+                <h1 id="page-title" class="text-xl font-bold text-gray-800">Dashboard Overview</h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1.5 rounded-lg">
+                        <i class="fa-regular fa-calendar-days mr-2"></i><span id="current-date"></span>
+                    </span>
+                </div>
+            </header>
+
+            <!-- CONTENT BODY -->
+            <main class="p-6">
+                
+                <!-- 1. TAB DASHBOARD -->
+                <section id="tab-dashboard" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Pengguna</p>
+                                <h3 class="text-2xl font-bold text-gray-800">1,245</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Master Item</p>
+                                <h3 class="text-2xl font-bold text-gray-800">328</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Status Sistem</p>
+                                <h3 class="text-xl font-bold text-emerald-600 flex items-center gap-2 mt-1">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span> Normal
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. TAB MASTER DATA -->
+                <section id="tab-master" class="hidden space-y-6">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Manajemen Master Data</h3>
+                                <p class="text-sm text-gray-500">Tambah dan kelola data master langsung dari web.</p>
+                            </div>
+                            <button onclick="alert('Form tambah data terbuka!')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-indigo-700 transition">
+                                <i class="fa-solid fa-plus mr-2"></i> Tambah Data
+                            </button>
+                        </div>
+                        <!-- Tabel Contoh -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr class="border-b border-gray-100 text-gray-400 font-medium">
+                                        <th class="py-3 px-4">ID</th>
+                                        <th class="py-3 px-4">Nama Item / Kategori</th>
+                                        <th class="py-3 px-4">Status</th>
+                                        <th class="py-3 px-4 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-50 text-gray-700">
+                                    <tr>
+                                        <td class="py-3 px-4 font-medium">#MST-001</td>
+                                        <td class="py-3 px-4">Kategori Layanan Utama</td>
+                                        <td class="py-3 px-4"><span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full text-xs font-semibold">Aktif</span></td>
+                                        <td class="py-3 px-4 text-right">
+                                            <button class="text-indigo-600 hover:text-indigo-800 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. TAB PENGATURAN ADMIN (SETTING DI WEB) -->
+                <section id="tab-settings" class="hidden space-y-6">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 max-w-2xl">
+                        <h3 class="text-lg font-bold text-gray-800 mb-1">Pengaturan Sistem Web</h3>
+                        <p class="text-sm text-gray-500 mb-6">Ubah konfigurasi aplikasi web tanpa perlu menyentuh file kodingan HTML.</p>
+                        
+                        <form onsubmit="saveSettings(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Aplikasi / Website</label>
+                                <input type="text" id="setting-appname" value="RS System Management" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Notifikasi Administrator</label>
+                                <input type="email" id="setting-email" value="admin@rs-setiamitra.com" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-700">Mode Pemeliharaan (Maintenance)</h4>
+                                    <p class="text-xs text-gray-400">Aktifkan untuk menutup akses web sementara.</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="setting-maintenance" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                </label>
+                            </div>
+                            <div class="pt-4 border-t border-gray-100 flex justify-end">
+                                <button type="submit" class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-indigo-700 transition">
+                                    Simpan Perubahan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT SEDERHANA UNTUK INTERAKSI -->
+    <script>
+        // Tanggal Realtime
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', options);
+
+        // Fungsi Navigasi Tab SPA (Single Page Application)
+        function switchTab(tabId) {
+            ['dashboard', 'master', 'settings'].forEach(id => {
+                document.getElementById('tab-' + id).classList.add('hidden');
+                document.getElementById('nav-' + id).classList.remove('bg-indigo-600', 'text-white');
+                document.getElementById('nav-' + id).classList.add('hover:bg-slate-800', 'hover:text-white');
+            });
+            
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeNav = document.getElementById('nav-' + tabId);
+            activeNav.classList.add('bg-indigo-600', 'text-white');
+            activeNav.classList.remove('hover:bg-slate-800', 'hover:text-white');
+
+            const titles = { 'dashboard': 'Dashboard Overview', 'master': 'Manajemen Master Data', 'settings': 'Pengaturan Web' };
+            document.getElementById('page-title').innerText = titles[tabId];
+        }
+
+        // Simulasi Simpan Pengaturan Web
+        function saveSettings(e) {
+            e.preventDefault();
+            const appName = document.getElementById('setting-appname').value;
+            alert('Pengaturan berhasil diperbarui!\nNama Web baru: ' + appName);
+        }
+    </script>
+</body>
+</html>
