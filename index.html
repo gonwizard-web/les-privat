@@ -1,309 +1,1201 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Rapor</title>
+    <title>Guru Les Privat Terbaik di Bandung | Superprof Les Privat</title>
+    <!-- Favicon & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandCyan: {
+                            50: '#f0faff',
+                            100: '#e0f6fe',
+                            200: '#bae9fd',
+                            300: '#7ad5fc',
+                            400: '#62DFFD', /* Palet warna Cyan Blue pengguna */
+                            500: '#00BCEB',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        brandPink: {
+                            50: '#fff5f8',
+                            100: '#ffebf2',
+                            200: '#ffd6e5',
+                            300: '#FFC8DB', /* Palet warna Pastel Pink pengguna */
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 8px 30px rgba(0, 188, 235, 0.08)',
+                        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02)',
+                        'modal': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-color: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-color: #1f2937;
-            --gray-text: #6b7280;
-            --border-color: #e5e7eb;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAFCFE;
+            color: #1E293B;
         }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .hero-gradient {
+            background: linear-gradient(180deg, #F0FAFF 0%, #FFFFFF 100%);
         }
-
-        h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+        .duo-gradient {
+            background: linear-gradient(135deg, #00BCEB 0%, #62DFFD 50%, #FFC8DB 100%);
         }
-
-        .subtitle {
-            text-align: center;
-            color: var(--gray-text);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+        .duo-gradient-text {
+            background: linear-gradient(135deg, #00BCEB 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .form-group {
-            margin-bottom: 15px;
+        .badge-pulse {
+            animation: pulse-slow 2.5s infinite;
         }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.92; transform: scale(1.02); }
         }
-
-        input {
-            width: 100%;
-            padding: 10px 12px;
-            box-sizing: border-box;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        input:focus {
-            border-color: var(--primary-color);
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-
-        button {
-            width: 100%;
-            padding: 11px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-danger {
-            background-color: #ef4444;
-        }
-        .btn-danger:hover {
-            background-color: #dc2626;
-        }
-
-        .error-msg {
-            color: #ef4444;
-            font-size: 0.85rem;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Dashboard Style */
-        .info-card {
-            background: #eef2ff;
-            border-left: 4px solid var(--primary-color);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .info-card p {
-            margin: 4px 0;
-            font-size: 0.95rem;
-        }
-
-        .history-item {
-            background: #f9fafb;
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--gray-text);
-            margin-bottom: 6px;
-        }
-
-        .history-materi {
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 4px;
-        }
-
-        .history-nilai {
-            display: inline-block;
-            background: #d1fae5;
-            color: #065f46;
-            padding: 2px 8px;
+        ::-webkit-scrollbar-thumb {
+            background: #bae9fd;
             border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
         }
-
-        .history-catatan {
-            font-size: 0.9rem;
-            color: #4b5563;
-            font-style: italic;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #62DFFD;
         }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen flex flex-col">
 
-<div class="container">
-    <!-- Bagian Login Orang Tua -->
-    <div id="login-section">
-        <h2>📚 Les Privat Kelas 2 SD</h2>
-        <p class="subtitle">Portal Cek Rapor & Perkembangan Belajar</p>
-        
-        <div class="form-group">
-            <label for="idInput">ID Murid</label>
-            <input type="text" id="idInput" placeholder="Contoh: M001">
-        </div>
-        
-        <div class="form-group">
-            <label for="pinInput">PIN / Kode Akses</label>
-            <input type="password" id="pinInput" placeholder="Masukkan PIN rahasia">
-        </div>
-        
-        <button onclick="login()">Masuk ke Rapor</button>
-        <p id="errorMsg" class="error-msg"></p>
-    </div>
-
-    <!-- Bagian Dashboard Rapor Siswa -->
-    <div id="result-section" class="hidden">
-        <h2 id="namaAnak">Nama Anak</h2>
-        <p class="subtitle" id="infoKelas">Kelas 2 SD</p>
-        
-        <div class="info-card">
-            <p><strong>Total Paket Sesi:</strong> <span id="totalSesi">0</span> Pertemuan</p>
-            <p><strong>Sesi Terpakai:</strong> <span id="sesiTerpakai">0</span> Pertemuan</p>
-            <p><strong>Sisa Kuota Sesi:</strong> <span id="sisaSesi" style="color: var(--primary-color); font-weight: bold;">0</span> Pertemuan</p>
-        </div>
-
-        <h3 style="font-size: 1.1rem; margin-bottom: 10px;">📋 Riwayat Belajar & Nilai</h3>
-        <div id="riwayatList">
-            <!-- Data riwayat akan dimasukkan otomatis lewat JavaScript -->
-        </div>
-
-        <button class="btn-danger" onclick="logout()">Keluar</button>
-    </div>
-</div>
-
-<script>
-    /* ==========================================================================
-       DATABASE SEDERHANA
-       Cara Update: Anda cukup mengubah/menambah data di bawah ini langsung 
-       di file ini setiap kali ada murid baru atau ada nilai les yang bertambah.
-       ========================================================================== */
-    const database = {
-        "M001": {
-            nama: "Budi Santoso",
-            pin: "1234",
-            total_sesi: 8,
-            sesi_terpakai: 2,
-            riwayat: [
-                {
-                    tanggal: "15 September 2026",
-                    materi: "Penjumlahan & Pengurangan Bersusun",
-                    nilai: "85",
-                    catatan: "Budi sudah sangat aktif dan paham cara menyimpan, pertahankan!"
-                },
-                {
-                    tanggal: "12 September 2026",
-                    materi: "Membaca Nyaring & Kosakata",
-                    nilai: "80",
-                    catatan: "Pelafalan sudah bagus, perlu latihan sedikit di kata berimbuhan."
-                }
-            ]
-        },
-        "M002": {
-            nama: "Ani Lestari",
-            pin: "5678",
-            total_sesi: 8,
-            sesi_terpakai: 1,
-            riwayat: [
-                {
-                    tanggal: "14 September 2026",
-                    materi: "Latihan Calistung Dasar",
-                    nilai: "90",
-                    catatan: "Ani sangat teliti dalam mengerjakan soal latihan matematika."
-                }
-            ]
-        }
-    };
-
-    function login() {
-        let id = document.getElementById("idInput").value.trim().toUpperCase();
-        let pin = document.getElementById("pinInput").value.trim();
-        let errorMsg = document.getElementById("errorMsg");
-
-        if (database[id] && database[id].pin === pin) {
-            let data = database[id];
-            let sisa = data.total_sesi - data.sesi_terpakai;
-
-            // Masukkan data ke tampilan web
-            document.getElementById("namaAnak").innerText = data.nama;
-            document.getElementById("totalSesi").innerText = data.total_sesi;
-            document.getElementById("sesiTerpakai").innerText = data.sesi_terpakai;
-            document.getElementById("sisaSesi").innerText = sisa;
-
-            // Buat list riwayat belajar
-            let htmlRiwayat = "";
-            if (data.riwayat.length > 0) {
-                data.riwayat.forEach(item => {
-                    htmlRiwayat += `
-                        <div class="history-item">
-                            <div class="history-header">
-                                <span>📅 ${item.tanggal}</span>
-                            </div>
-                            <div class="history-materi">${item.materi}</div>
-                            <div class="history-nilai">Nilai: ${item.nilai}</div>
-                            <div class="history-catatan">💬 "${item.catatan}"</div>
+    <!-- ==========================================================================
+         1. STICKY TOP NAVIGATION BAR (SUPERPROF STYLE)
+         ========================================================================== -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- Brand Logo (Superprof Icon & Text in Duo-tone Cyan & Pink) -->
+                <a href="index.html" class="flex items-center gap-2 flex-shrink-0 group">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brandCyan-500 to-brandPink-300 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition transform">
+                        <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-1">
+                            <span class="text-2xl font-extrabold tracking-tight text-slate-800">super<span class="text-brandCyan-500">prof</span></span>
+                            <span class="w-2 h-2 rounded-full bg-brandPink-400"></span>
                         </div>
-                    `;
-                });
-            } else {
-                htmlRiwayat = "<p style='text-align:center; color:var(--gray-text);'>Belum ada riwayat pertemuan.</p>";
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Les Privat Bandung</span>
+                    </div>
+                </a>
+
+                <!-- Superprof Search Pill Capsule (Desktop) -->
+                <div class="hidden md:flex items-center flex-1 max-w-xl bg-white border border-slate-200 rounded-full shadow-sm hover:shadow-md transition pl-5 pr-2 py-1.5 gap-2">
+                    <div class="flex-1 flex items-center gap-3">
+                        <i class="fa-solid fa-magnifying-glass text-brandCyan-500 text-sm"></i>
+                        <input type="text" id="headerSearchInput" onkeyup="handleSearchKey(event)" placeholder="Materi apa yang ingin Anda pelajari? (SD, Calistung, Matematika...)" class="w-full text-sm font-medium text-slate-700 bg-transparent border-none outline-none placeholder:text-slate-400">
+                    </div>
+                    <div class="h-6 w-[1px] bg-slate-200"></div>
+                    <div class="flex items-center gap-2 pr-2">
+                        <i class="fa-solid fa-location-dot text-brandPink-400 text-sm"></i>
+                        <span class="text-sm font-semibold text-slate-700 whitespace-nowrap">Bandung</span>
+                    </div>
+                    <button onclick="executeSearch()" class="w-10 h-10 rounded-full bg-brandCyan-500 hover:bg-brandCyan-600 text-white flex items-center justify-center transition shadow-sm hover:scale-105">
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Right Nav Menu -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Tombol Portal Rapor Murid (Fitur Asli yang Ditingkatkan) -->
+                    <button onclick="openRaporModal()" class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-brandPink-50 text-brandPink-600 hover:bg-brandPink-100 border border-brandPink-200 text-xs sm:text-sm font-bold transition shadow-sm">
+                        <i class="fa-solid fa-clipboard-check text-brandPink-500"></i>
+                        <span>Portal Rapor</span>
+                        <span class="w-2 h-2 rounded-full bg-brandPink-500 animate-ping"></span>
+                    </button>
+
+                    <!-- Tombol Master Admin -->
+                    <a href="ekstensi.html" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-xs sm:text-sm font-semibold transition">
+                        <i class="fa-solid fa-sliders text-slate-400"></i>
+                        <span>Admin</span>
+                    </a>
+
+                    <!-- CTA Button -->
+                    <button onclick="openTutorBooking('Kak Annisaa, S.Pd')" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-brandCyan-500 to-brandCyan-600 hover:from-brandCyan-600 hover:to-brandCyan-700 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition transform active:scale-95">
+                        <span>Pesan Les</span>
+                        <i class="fa-solid fa-phone text-xs"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Search Bar Strip -->
+    <div class="md:hidden bg-white px-4 py-3 border-b border-slate-100">
+        <div class="flex items-center bg-slate-50 border border-slate-200 rounded-full px-4 py-2 gap-2 shadow-inner">
+            <i class="fa-solid fa-magnifying-glass text-brandCyan-500"></i>
+            <input type="text" id="mobileSearchInput" onkeyup="handleSearchKey(event)" placeholder="Cari materi les di Bandung..." class="w-full text-sm bg-transparent outline-none">
+            <button onclick="executeSearch()" class="px-3 py-1 bg-brandCyan-500 text-white rounded-full text-xs font-bold">Cari</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         2. HERO & STATISTIK SECTION (SUPERPROF BANDUNG OVERVIEW)
+         ========================================================================== -->
+    <section class="hero-gradient border-b border-slate-100 pt-8 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumb Navigation -->
+            <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-4">
+                <a href="#" class="hover:text-brandCyan-600">Beranda</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <a href="#" class="hover:text-brandCyan-600">Kursus</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-slate-600">Semua materi</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-brandCyan-600 font-bold">Bandung</span>
+            </nav>
+
+            <!-- Headline & Intro -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandCyan-100/70 border border-brandCyan-200 text-brandCyan-700 text-xs font-bold mb-3">
+                        <i class="fa-solid fa-shield-halved text-brandCyan-600"></i>
+                        <span>Guru Les Privat Terverifikasi di Kota Bandung</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Les Privat di Bandung: <span class="duo-gradient-text">Belajar Menyenangkan & Terarah</span>
+                    </h1>
+                    <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+                        Pilih guru les privat terbaik untuk anak Anda (TK, SD Kelas 1-6, Calistung, SMP, hingga Umum). Belajar tatap muka langsung ke rumah di seluruh area Bandung atau online lewat webcam.
+                    </p>
+                </div>
+
+                <!-- Quick Action: Akses Rapor Anak -->
+                <div class="bg-white p-4 rounded-2xl border border-brandPink-200 shadow-sm flex items-center gap-4 flex-shrink-0 lg:max-w-xs">
+                    <div class="w-12 h-12 rounded-xl bg-brandPink-100 text-brandPink-600 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-800">Sudah Bergabung?</h2>
+                        <p class="text-xs text-slate-500 mb-2">Pantau rapor & sisa kuota sesi belajar anak.</p>
+                        <button onclick="openRaporModal()" class="text-xs font-bold text-brandCyan-600 hover:text-brandCyan-700 flex items-center gap-1 underline underline-offset-2">
+                            Buka Rapor Murid <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Statistik Khas Superprof (Cyan & Pastel Pink Theme) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-card hover:border-brandCyan-300 transition">
+                    <div class="w-9 h-9 rounded-xl bg-brandCyan-100 text-brandCyan-600 flex items-center justify-center text-base mb-3">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-slate-400">Tarif Rata-rata</p>
+                    <p class="text-lg sm:text-xl font-extrabold text-slate-800 mt-0.5">Rp 55.000<span class="text-xs font-normal text-slate-500">/jam</span></p>
+                    <span class="inline-block mt-2 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Terjangkau & Fleksibel</span>
+                </div>
+
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-card hover:border-brandPink-300 transition">
+                    <div class="w-9 h-9 rounded-xl bg-brandPink-100 text-brandPink-600 flex items-center justify-center text-base mb-3">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-slate-400">Garansi Les Pertama</p>
+                    <p class="text-lg sm:text-xl font-extrabold text-brandPink-600 mt-0.5">1 Jam Gratis</p>
+                    <span class="inline-block mt-2 text-[11px] font-medium text-brandPink-600 bg-brandPink-50 px-2 py-0.5 rounded-md">100% Guru Tawarkan</span>
+                </div>
+
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-card hover:border-brandCyan-300 transition">
+                    <div class="w-9 h-9 rounded-xl bg-brandCyan-100 text-brandCyan-600 flex items-center justify-center text-base mb-3">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-slate-400">Waktu Respon Cepat</p>
+                    <p class="text-lg sm:text-xl font-extrabold text-slate-800 mt-0.5">&lt; 2 Jam</p>
+                    <span class="inline-block mt-2 text-[11px] font-medium text-brandCyan-600 bg-brandCyan-50 px-2 py-0.5 rounded-md">Respon Langsung via WA</span>
+                </div>
+
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-card hover:border-amber-300 transition">
+                    <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-500 flex items-center justify-center text-base mb-3">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-slate-400">Kepuasan Siswa & Wali</p>
+                    <p class="text-lg sm:text-xl font-extrabold text-slate-800 mt-0.5">5.0 <span class="text-xs font-semibold text-amber-500">★★★★★</span></p>
+                    <span class="inline-block mt-2 text-[11px] font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Berdasarkan 120+ Ulasan</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. FILTER BAR & KATALOG GURU PRIVATE (SUPERPROF LISTING)
+         ========================================================================== -->
+    <section class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full">
+        
+        <!-- Filter Controls Bar -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-8 space-y-4">
+            
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-slate-100">
+                <!-- Status & Counter -->
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <h2 class="text-base font-bold text-slate-800" id="tutorCountText">Menampilkan Guru Les Privat Tersedia di Bandung</h2>
+                </div>
+                <!-- Urutkan Dropdown -->
+                <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                    <span>Urutkan:</span>
+                    <select id="sortFilter" onchange="applyFilters()" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 font-semibold text-slate-700 outline-none focus:border-brandCyan-500">
+                        <option value="recommended">Paling Direkomendasikan</option>
+                        <option value="price-asc">Tarif Terendah</option>
+                        <option value="price-desc">Tarif Tertinggi</option>
+                        <option value="rating">Rating Tertinggi</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Interactive Filter Chips -->
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+                <span class="text-xs font-bold text-slate-400 mr-1"><i class="fa-solid fa-filter mr-1"></i> Jenjang:</span>
+                
+                <button onclick="setCategory('all')" id="chip-all" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-brandCyan-500 text-white shadow-sm">
+                    Semua Jenjang
+                </button>
+                <button onclick="setCategory('sd')" id="chip-sd" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    SD Kelas 1-6
+                </button>
+                <button onclick="setCategory('calistung')" id="chip-calistung" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    Calistung Dasar
+                </button>
+                <button onclick="setCategory('smp')" id="chip-smp" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    SMP & Persiapan Ujian
+                </button>
+                <button onclick="setCategory('inggris')" id="chip-inggris" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    Bahasa Inggris Anak
+                </button>
+                <button onclick="setCategory('ngaji')" id="chip-ngaji" class="filter-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    Mengaji / Iqra'
+                </button>
+
+                <!-- Format Switch (Tatap Muka / Online) -->
+                <div class="ml-auto flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+                    <button onclick="setFormat('all')" id="fmt-all" class="format-btn px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-800 shadow-xs">Semua</button>
+                    <button onclick="setFormat('offline')" id="fmt-offline" class="format-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900">Tatap Muka</button>
+                    <button onclick="setFormat('online')" id="fmt-online" class="format-btn px-3 py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900">Webcam</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Grid Kartu Profil Guru (Superprof Card Structure) -->
+        <div id="tutorGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Data kartu guru dimuat via JavaScript -->
+        </div>
+
+        <!-- Empty State jika pencarian tidak ditemukan -->
+        <div id="noResults" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200 p-8 max-w-md mx-auto my-8">
+            <div class="w-16 h-16 rounded-full bg-brandPink-100 text-brandPink-500 flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-solid fa-search"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Guru Tidak Ditemukan</h3>
+            <p class="text-sm text-slate-500 mt-1 mb-4">Coba ubah kata kunci atau ganti filter kategori jenjang yang dipilih.</p>
+            <button onclick="resetFilters()" class="px-4 py-2 bg-brandCyan-500 text-white rounded-full text-xs font-bold hover:bg-brandCyan-600 transition">
+                Reset Semua Filter
+            </button>
+        </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         4. BENEFIT / MENGAPA MEMILIH KAMI DI BANDUNG
+         ========================================================================== -->
+    <section class="bg-white border-y border-slate-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brandCyan-600 bg-brandCyan-50 px-3 py-1 rounded-full">Keunggulan Belajar</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Mengapa Memilih Les Privat Kami di Bandung?</h2>
+                <p class="text-sm text-slate-500 mt-2">Pendekatan personal disesuaikan dengan kurikulum sekolah dan kecepatan belajar anak Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="p-6 rounded-3xl bg-brandCyan-50/50 border border-brandCyan-100 hover:shadow-soft transition">
+                    <div class="w-12 h-12 rounded-2xl bg-brandCyan-500 text-white flex items-center justify-center text-xl font-bold mb-4 shadow-sm">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Metode Fun & Patient Learning</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Guru kami memahami psikologi anak. Belajar membaca, berhitung, dan sains dijelaskan melalui analogi seru sehingga anak tidak mudah jenuh dan semakin percaya diri.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-brandPink-50/60 border border-brandPink-200 hover:shadow-soft transition">
+                    <div class="w-12 h-12 rounded-2xl bg-brandPink-400 text-white flex items-center justify-center text-xl font-bold mb-4 shadow-sm">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Transparansi Rapor Online</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Orang tua memiliki akses eksklusif ke Portal Rapor Siswa. Setiap selesai sesi, materi, nilai kuis, dan catatan evaluasi guru langsung tercatat secara rapi.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-brandCyan-50/50 border border-brandCyan-100 hover:shadow-soft transition">
+                    <div class="w-12 h-12 rounded-2xl bg-brandCyan-500 text-white flex items-center justify-center text-xl font-bold mb-4 shadow-sm">
+                        <i class="fa-solid fa-house-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Fleksibilitas Lokasi di Bandung</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Guru siap hadir ke rumah Anda (wilayah Bandung Kota, Bandung Barat, Cimahi, Kab. Bandung) atau secara online dengan media interaktif papan tulis digital.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. FAQ ACCORDION SECTION (SEPUTAR LES PRIVAT BANDUNG)
+         ========================================================================== -->
+    <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+            <p class="text-sm text-slate-500 mt-2">Semua yang perlu Anda ketahui sebelum memesan guru les privat di Bandung.</p>
+        </div>
+
+        <div class="space-y-4">
+            
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4.5 flex justify-between items-center font-bold text-slate-800 hover:text-brandCyan-600 transition">
+                    <span>Berapa tarif rata-rata guru les privat di Bandung?</span>
+                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform"></i>
+                </button>
+                <div id="faq-ans-1" class="hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    Tarif les privat di Bandung berkisar antara Rp 45.000 hingga Rp 75.000 per jam untuk jenjang SD & Calistung. Tersedia juga paket hemat 8 atau 12 sesi dengan potongan harga khusus dan kuota yang tercatat di portal rapor.
+                </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4.5 flex justify-between items-center font-bold text-slate-800 hover:text-brandCyan-600 transition">
+                    <span>Bagaimana cara klaim "1 Jam Pertama Gratis"?</span>
+                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform"></i>
+                </button>
+                <div id="faq-ans-2" class="hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    Sesi pertama gratis adalah kesempatan bagi anak dan orang tua untuk mengenal metode pengajaran guru, melakukan asesmen awal kemampuan anak, dan memastikan kenyamanan tanpa kewajiban komitmen biaya di awal.
+                </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4.5 flex justify-between items-center font-bold text-slate-800 hover:text-brandCyan-600 transition">
+                    <span>Bagaimana cara orang tua memantau rapor dan sisa kuota sesi?</span>
+                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform"></i>
+                </button>
+                <div id="faq-ans-3" class="hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    Cukup klik tombol <strong>"Portal Rapor"</strong> di menu atas website ini, lalu masukkan <strong>ID Murid</strong> (contoh: <code>M001</code>) dan <strong>PIN</strong> Anda. Anda dapat melihat riwayat materi belajar, nilai per pertemuan, serta sisa kuota pertemuan secara realtime.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. MODAL: PORTAL RAPOR MURID (INTEGRASI FITUR ASLI LES-PRIVAT)
+         ========================================================================== -->
+    <div id="raporModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-modal border border-slate-100 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-brandCyan-500 via-brandCyan-400 to-brandPink-300 p-6 text-white relative">
+                <button onclick="closeRaporModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-white text-brandCyan-600 flex items-center justify-center text-2xl font-bold shadow-sm">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">Portal Rapor Belajar</h3>
+                        <p class="text-xs text-white/90 font-medium">Les Privat Annisaa Bandung - Cek Capaian & Kuota</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body: Login View -->
+            <div id="modal-login-view" class="p-6">
+                <p class="text-xs text-slate-500 mb-5">
+                    Silakan masukkan ID Murid dan PIN yang diberikan oleh pengajar untuk melihat rapor perkembangan anak.
+                </p>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">ID Murid</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-id-card"></i></span>
+                            <input type="text" id="modalIdInput" placeholder="Contoh: M001" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-800 uppercase focus:border-brandCyan-500 focus:ring-2 focus:ring-brandCyan-100 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">PIN Rahasia</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" id="modalPinInput" placeholder="Masukkan 4 digit PIN" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-800 focus:border-brandCyan-500 focus:ring-2 focus:ring-brandCyan-100 outline-none transition">
+                        </div>
+                    </div>
+
+                    <p id="modalErrorMsg" class="text-xs font-semibold text-rose-500 text-center min-h-[16px]"></p>
+
+                    <button onclick="handleModalLogin()" class="w-full py-3 rounded-xl bg-brandCyan-500 hover:bg-brandCyan-600 text-white font-bold text-sm shadow-md hover:shadow-lg transition">
+                        Masuk ke Rapor Siswa
+                    </button>
+
+                    <!-- Akun Demo Cepat untuk Evaluasi -->
+                    <div class="pt-4 border-t border-slate-100 text-center">
+                        <p class="text-[11px] font-semibold text-slate-400 mb-2">Atau coba akses akun demo langsung:</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="quickLogin('M001', '1234')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brandCyan-50 hover:text-brandCyan-700 text-slate-600 text-xs font-bold transition">
+                                👤 Budi (M001 / 1234)
+                            </button>
+                            <button onclick="quickLogin('M002', '5678')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brandPink-50 hover:text-brandPink-700 text-slate-600 text-xs font-bold transition">
+                                👤 Ani (M002 / 5678)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body: Dashboard Rapor Murid View (Setelah Login) -->
+            <div id="modal-dashboard-view" class="hidden p-6 max-h-[75vh] overflow-y-auto">
+                
+                <!-- Profil Siswa -->
+                <div class="flex items-center justify-between bg-slate-50 p-4 rounded-2xl border border-slate-100 mb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brandCyan-400 to-brandPink-300 text-white flex items-center justify-center text-lg font-extrabold shadow-sm" id="avatarInitials">
+                            BS
+                        </div>
+                        <div>
+                            <h4 class="text-base font-extrabold text-slate-900" id="raporNamaAnak">Budi Santoso</h4>
+                            <p class="text-xs font-medium text-slate-500" id="raporInfoKelas">Murid Kelas 2 SD • Bimbingan Les Bandung</p>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold">Aktif</span>
+                </div>
+
+                <!-- Kartu Kuota Pertemuan & Progress Bar -->
+                <div class="bg-gradient-to-br from-brandCyan-50 to-brandPink-50 p-4 rounded-2xl border border-brandCyan-200/60 mb-6">
+                    <div class="flex justify-between items-center text-xs font-bold text-slate-700 mb-2">
+                        <span>Status Kuota Sesi Belajar</span>
+                        <span id="raporPercentText" class="text-brandCyan-600 font-extrabold">25% Terpakai</span>
+                    </div>
+                    <!-- Bar -->
+                    <div class="w-full h-3 bg-white rounded-full overflow-hidden border border-brandCyan-200">
+                        <div id="raporProgressBar" class="h-full bg-gradient-to-r from-brandCyan-400 to-brandPink-400 rounded-full transition-all duration-500" style="width: 25%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 text-center">
+                        <div class="bg-white/80 backdrop-blur-xs p-2 rounded-xl border border-slate-100">
+                            <p class="text-[10px] text-slate-400 font-medium">Total Paket</p>
+                            <p class="text-sm font-extrabold text-slate-800 mt-0.5"><span id="raporTotalSesi">8</span> Sesi</p>
+                        </div>
+                        <div class="bg-white/80 backdrop-blur-xs p-2 rounded-xl border border-slate-100">
+                            <p class="text-[10px] text-slate-400 font-medium">Terpakai</p>
+                            <p class="text-sm font-extrabold text-brandCyan-600 mt-0.5"><span id="raporSesiTerpakai">2</span> Sesi</p>
+                        </div>
+                        <div class="bg-white/80 backdrop-blur-xs p-2 rounded-xl border border-brandPink-200">
+                            <p class="text-[10px] text-brandPink-600 font-bold">Sisa Kuota</p>
+                            <p class="text-sm font-extrabold text-brandPink-600 mt-0.5"><span id="raporSisaSesi">6</span> Sesi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Riwayat Pertemuan & Nilai -->
+                <div class="mb-6">
+                    <h5 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-brandCyan-500"></i> Riwayat Pertemuan & Evaluasi
+                    </h5>
+                    <div id="raporRiwayatList" class="space-y-3">
+                        <!-- List riwayat nilai di-render otomatis via JS -->
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Bawah -->
+                <div class="flex gap-3 pt-3 border-t border-slate-100">
+                    <button onclick="window.print()" class="flex-1 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-print"></i> Cetak Ringkasan
+                    </button>
+                    <button onclick="logoutRapor()" class="px-5 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs transition">
+                        Keluar
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         7. MODAL: DETAIL PROFIL GURU & FORM BOOKING WHATSAPP
+         ========================================================================== -->
+    <div id="tutorModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-xl rounded-3xl shadow-modal border border-slate-100 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200">
+            
+            <div class="bg-gradient-to-r from-brandCyan-500 to-brandCyan-600 p-6 text-white relative">
+                <button onclick="closeTutorModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="flex items-center gap-4">
+                    <img id="detailTutorImg" src="" alt="Guru" class="w-16 h-16 rounded-2xl object-cover border-2 border-white shadow-md">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 id="detailTutorName" class="text-xl font-extrabold text-white">Kak Annisaa, S.Pd</h3>
+                            <span class="bg-brandPink-300 text-pink-900 text-[10px] font-bold px-2 py-0.5 rounded-full">SUPER TEACHER</span>
+                        </div>
+                        <p id="detailTutorTitle" class="text-xs text-white/90 font-medium mt-0.5">Spesialis SD & Calistung • UPI Bandung</p>
+                        <p id="detailTutorRate" class="text-xs font-extrabold text-brandPink-200 mt-1">Rp 65.000 / jam • 1 Jam Pertama Gratis</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-5 max-h-[70vh] overflow-y-auto">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Tentang Pengajar</h4>
+                    <p id="detailTutorBio" class="text-sm text-slate-600 leading-relaxed">
+                        Lulusan Universitas Pendidikan Indonesia (UPI) Bandung jurusan PGSD. Berpengalaman lebih dari 5 tahun membimbing anak-anak belajar membaca, berhitung cepat, dan penguasaan matematika dasar dengan metode interaktif.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Mata Pelajaran & Keahlian</h4>
+                    <div id="detailTutorTags" class="flex flex-wrap gap-1.5">
+                        <!-- tags -->
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 class="text-xs font-bold text-slate-800 mb-2">Ulasan Murid & Wali Terverifikasi (5.0/5 ⭐)</h4>
+                    <p class="text-xs text-slate-600 italic">"Kak Annisaa sangat sabar, anak saya yang awalnya susah diajak membaca sekarang malah bersemangat tiap jadwal les. Nilai rapor semester ini naik drastis!"</p>
+                    <p class="text-[10px] font-bold text-slate-400 mt-2">— Ibu Siska (Wali Murid di Sukasari, Bandung)</p>
+                </div>
+
+                <div class="bg-brandCyan-50 p-4 rounded-2xl border border-brandCyan-200 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-brandCyan-800">Paket Hemat Belajar</p>
+                        <p class="text-[11px] text-brandCyan-600">Mulai dari 8 Sesi + Gratis Rapor Siswa Digital</p>
+                    </div>
+                    <span class="text-xs font-extrabold text-brandCyan-700 bg-white px-3 py-1.5 rounded-xl border border-brandCyan-200">Diskon 10%</span>
+                </div>
+
+                <!-- Form Hubungi via WhatsApp -->
+                <div class="pt-2">
+                    <a id="btnWhatsappBooking" href="https://wa.me/6281234567890?text=Halo%20Kak%20Annisaa,%20saya%20tertarik%20mendaftar%20les%20privat%20di%20Bandung." target="_blank" class="w-full py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Hubungi Guru & Klaim Sesi Gratis</span>
+                    </a>
+                    <p class="text-[11px] text-center text-slate-400 mt-2">Respon langsung dalam waktu 1-2 jam melalui WhatsApp</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         8. FOOTER (SUPERPROF STYLE)
+         ========================================================================== -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+                
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brandCyan-500 to-brandPink-300 flex items-center justify-center text-white font-extrabold text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white tracking-tight">super<span class="text-brandCyan-400">prof</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Platform les privat terpercaya di Bandung untuk mendampingi putra-putri Anda meraih prestasi akademik terbaik dengan guru-guru terseleksi.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 text-slate-400">
+                        <a href="#" class="hover:text-brandCyan-400"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="hover:text-brandCyan-400"><i class="fa-brands fa-facebook text-lg"></i></a>
+                        <a href="#" class="hover:text-brandCyan-400"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4">Materi Les di Bandung</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">Les Privat Matematika SD</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bimbingan Calistung Cepat</a></li>
+                        <li><a href="#" class="hover:text-white transition">Les Bahasa Inggris Anak</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bimbel Tematik SD Kelas 1-6</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mengaji & Tahsin Anak</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4">Area Layanan Bandung</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">Bandung Kota & Dago</a></li>
+                        <li><a href="#" class="hover:text-white transition">Coblong & Sukasari</a></li>
+                        <li><a href="#" class="hover:text-white transition">Buahbatu & Batununggal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cimahi & Bandung Barat</a></li>
+                        <li><a href="#" class="hover:text-white transition">Seluruh Indonesia (Webcam)</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4">Fitur Terintegrasi</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="javascript:void(0)" onclick="openRaporModal()" class="text-brandPink-300 font-bold hover:text-white transition"><i class="fa-solid fa-clipboard-check mr-1"></i> Portal Rapor Siswa</a></li>
+                        <li><a href="ekstensi.html" class="hover:text-white transition"><i class="fa-solid fa-sliders mr-1"></i> Dashboard Admin Master</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bantuan & FAQ</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Superprof Les Privat Bandung. Hak cipta dilindungi.</p>
+                <div class="flex items-center gap-4">
+                    <span>Nuansa Desain: Cyan & Pastel Pink Theme</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
+                    <span>Versi 2.0 Modern</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         9. JAVASCRIPT: DATA & INTERAKSI (SUPERPROF DIRECTORY & RAPOR)
+         ========================================================================== -->
+    <script>
+        /* ==========================================
+           A. DATABASE GURU LES PRIVAT BANDUNG
+           ========================================== */
+        const tutorsData = [
+            {
+                id: "T001",
+                name: "Kak Annisaa, S.Pd",
+                verified: true,
+                superTeacher: true,
+                rating: "5.0",
+                reviewCount: 42,
+                ratePerHour: 65000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
+                location: "Bandung (Dago, Coblong, Sukasari) & Webcam",
+                headline: "Guru Berpengalaman SD & Calistung | Lulusan UPI Bandung",
+                bio: "Lulusan Universitas Pendidikan Indonesia (UPI) dengan pengalaman 5+ tahun membimbing siswa kelas 1-6 SD. Sangat sabar, ramah, dan mahir menggunakan teknik bermain sambil belajar agar anak cepat lancar membaca dan berhitung tanpa tertekan.",
+                categories: ["sd", "calistung"],
+                format: "all",
+                tags: ["Matematika SD", "Calistung Cepat", "Tematik SD", "Sabar & Ramah"]
+            },
+            {
+                id: "T002",
+                name: "Kak Dimas Maulana",
+                verified: true,
+                superTeacher: true,
+                rating: "5.0",
+                reviewCount: 31,
+                ratePerHour: 75000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
+                location: "Bandung (Buahbatu, Batununggal) & Webcam",
+                headline: "Juara Olimpiade Sains | Les Matematika & IPA SD-SMP",
+                bio: "Spesialis pemahaman konsep logika matematika dan sains. Mengajarkan cara penyelesaian soal bersusun, pecahan, dan geometri dengan trik visual yang mudah dimengerti anak.",
+                categories: ["sd", "smp"],
+                format: "all",
+                tags: ["Matematika", "IPA Terpadu", "Persiapan Ujian", "Trik Cepat"]
+            },
+            {
+                id: "T003",
+                name: "Kak Ratna Sari, S.Hum",
+                verified: true,
+                superTeacher: false,
+                rating: "4.9",
+                reviewCount: 19,
+                ratePerHour: 50000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=400",
+                location: "Bandung Kota (Tatap Muka di Rumah Anda)",
+                headline: "Bimbingan Membaca Lancar, Menulis & Bahasa Inggris Anak",
+                bio: "Fokus mendampingi anak usia 4-8 tahun yang sedang transisi dari TK ke SD. Pendekatan phonics dan flashcard interaktif membuat anak antusias belajar setiap kali pertemuan.",
+                categories: ["calistung", "inggris"],
+                format: "offline",
+                tags: ["Phonics", "Bahasa Inggris Fun", "Kosa Kata", "TK & SD"]
+            },
+            {
+                id: "T004",
+                name: "Ustadz Budi Rahardjo",
+                verified: true,
+                superTeacher: true,
+                rating: "5.0",
+                reviewCount: 26,
+                ratePerHour: 45000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
+                location: "Bandung (Cimahi & Bandung Barat) & Webcam",
+                headline: "Guru Ngaji Privat Anak: Iqra', Tajwid & Doa Harian",
+                bio: "Berpengalaman mengajar ngaji anak dengan metode Iqra' tartil dan menyenangkan. Dilengkapi dengan hafalan surat pendek, doa harian, dan akhlak budi pekerti.",
+                categories: ["ngaji", "sd"],
+                format: "all",
+                tags: ["Iqra' 1-6", "Tahsin Al-Qur'an", "Doa Anak", "Tajwid"]
+            },
+            {
+                id: "T005",
+                name: "Kak Sarah Amelia",
+                verified: true,
+                superTeacher: true,
+                rating: "5.0",
+                reviewCount: 38,
+                ratePerHour: 70000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
+                location: "Webcam (Les Online Interaktif Seluruh Bandung)",
+                headline: "Native Style English for Kids & Conversation",
+                bio: "Belajar percakapan bahasa Inggris sejak dini dengan cerita dongeng, lagu, dan games digital. Anak tidak akan malu berbicara dan kosakata bertambah cepat.",
+                categories: ["inggris", "sd", "smp"],
+                format: "online",
+                tags: ["Speaking Kids", "Grammar Dasar", "Fun Games", "Online"]
+            },
+            {
+                id: "T006",
+                name: "Kak Farhan Ramadhan",
+                verified: true,
+                superTeacher: false,
+                rating: "4.9",
+                reviewCount: 15,
+                ratePerHour: 55000,
+                firstHourFree: true,
+                photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
+                location: "Bandung Timur (Antapani, Arcamanik)",
+                headline: "Pendamping Belajar PR & Tugas Sekolah SD Kelas 1-6",
+                bio: "Membantu anak menuntaskan PR harian sekolah dengan pemahaman materi mendalam, membiasakan disiplin belajar, dan mengulang materi ujian.",
+                categories: ["sd"],
+                format: "offline",
+                tags: ["Pendamping PR", "Ujian Sekolah", "Tematik", "Sabar"]
             }
-            document.getElementById("riwayatList").innerHTML = htmlRiwayat;
+        ];
 
-            // Sembunyikan form login, tampilkan dashboard
-            document.getElementById("login-section").classList.add("hidden");
-            document.getElementById("result-section").classList.remove("hidden");
-            errorMsg.innerText = "";
-        } else {
-            errorMsg.innerText = "ID Murid atau PIN salah! Periksa kembali.";
+        /* ==========================================
+           B. DATABASE RAPOR MURID (DATABASE ASLI + DUKUNGAN LOCALSTORAGE)
+           ========================================== */
+        const defaultRaporDatabase = {
+            "M001": {
+                nama: "Budi Santoso",
+                pin: "1234",
+                kelas: "Kelas 2 SD",
+                tutor: "Kak Annisaa, S.Pd",
+                total_sesi: 8,
+                sesi_terpakai: 2,
+                riwayat: [
+                    {
+                        tanggal: "15 September 2026",
+                        materi: "Penjumlahan & Pengurangan Bersusun",
+                        nilai: "85",
+                        catatan: "Budi sudah sangat aktif dan paham cara menyimpan, pertahankan!"
+                    },
+                    {
+                        tanggal: "12 September 2026",
+                        materi: "Membaca Nyaring & Kosakata",
+                        nilai: "80",
+                        catatan: "Pelafalan sudah bagus, perlu latihan sedikit di kata berimbuhan."
+                    }
+                ]
+            },
+            "M002": {
+                nama: "Ani Lestari",
+                pin: "5678",
+                kelas: "Kelas 2 SD",
+                tutor: "Kak Annisaa, S.Pd",
+                total_sesi: 8,
+                sesi_terpakai: 1,
+                riwayat: [
+                    {
+                        tanggal: "14 September 2026",
+                        materi: "Latihan Calistung Dasar",
+                        nilai: "90",
+                        catatan: "Ani sangat teliti dalam mengerjakan soal latihan matematika."
+                    }
+                ]
+            }
+        };
+
+        function getRaporDatabase() {
+            let saved = localStorage.getItem("les_privat_rapor_db");
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    return defaultRaporDatabase;
+                }
+            }
+            localStorage.setItem("les_privat_rapor_db", JSON.stringify(defaultRaporDatabase));
+            return defaultRaporDatabase;
         }
-    }
 
-    function logout() {
-        document.getElementById("idInput").value = "";
-        document.getElementById("pinInput").value = "";
-        document.getElementById("login-section").classList.remove("hidden");
-        document.getElementById("result-section").classList.add("hidden");
-    }
-</script>
+        /* ==========================================
+           C. LOGIKA FILTER & RENDER GURU
+           ========================================== */
+        let currentCategory = "all";
+        let currentFormat = "all";
+        let currentSearchQuery = "";
 
+        function renderTutors() {
+            const grid = document.getElementById("tutorGrid");
+            const noResults = document.getElementById("noResults");
+            const countText = document.getElementById("tutorCountText");
+            const sortBy = document.getElementById("sortFilter").value;
+
+            // Filter logic
+            let filtered = tutorsData.filter(tutor => {
+                // Kategori
+                const matchCat = (currentCategory === "all") || tutor.categories.includes(currentCategory);
+                // Format
+                const matchFmt = (currentFormat === "all") || (tutor.format === "all") || (tutor.format === currentFormat);
+                // Search query
+                let matchSearch = true;
+                if (currentSearchQuery.trim() !== "") {
+                    const q = currentSearchQuery.toLowerCase();
+                    matchSearch = tutor.name.toLowerCase().includes(q) ||
+                                  tutor.headline.toLowerCase().includes(q) ||
+                                  tutor.bio.toLowerCase().includes(q) ||
+                                  tutor.tags.some(tag => tag.toLowerCase().includes(q));
+                }
+                return matchCat && matchFmt && matchSearch;
+            });
+
+            // Sorting logic
+            if (sortBy === "price-asc") {
+                filtered.sort((a, b) => a.ratePerHour - b.ratePerHour);
+            } else if (sortBy === "price-desc") {
+                filtered.sort((a, b) => b.ratePerHour - a.ratePerHour);
+            } else if (sortBy === "rating") {
+                filtered.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+            }
+
+            // Update counter text
+            countText.innerText = `Menampilkan ${filtered.length} Guru Les Privat Tersedia di Bandung`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = "";
+                noResults.classList.remove("hidden");
+                return;
+            } else {
+                noResults.classList.add("hidden");
+            }
+
+            // Render cards
+            let html = "";
+            filtered.forEach(tutor => {
+                const formattedRate = "Rp " + tutor.ratePerHour.toLocaleString("id-ID");
+                const superTeacherBadge = tutor.superTeacher ? `
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brandPink-100 text-brandPink-700 text-[10px] font-extrabold tracking-wide uppercase border border-brandPink-200">
+                        <i class="fa-solid fa-bolt text-brandPink-500"></i> Super Teacher
+                    </span>
+                ` : `
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
+                        <i class="fa-solid fa-circle-check text-brandCyan-500"></i> Terverifikasi
+                    </span>
+                `;
+
+                const tagsHtml = tutor.tags.map(t => `<span class="bg-slate-100 text-slate-600 px-2.5 py-0.5 rounded-md text-[11px] font-medium">${t}</span>`).join("");
+
+                html += `
+                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1">
+                        <div class="p-6">
+                            
+                            <!-- Header Kartu: Foto, Status & Rating -->
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="relative flex-shrink-0">
+                                    <img src="${tutor.photo}" alt="${tutor.name}" class="w-16 h-16 rounded-2xl object-cover border-2 border-slate-100 shadow-sm group-hover:scale-105 transition">
+                                    <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white text-[9px]" title="Online / Aktif">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1.5 flex-wrap mb-1">
+                                        ${superTeacherBadge}
+                                    </div>
+                                    <h3 class="text-base font-extrabold text-slate-800 truncate group-hover:text-brandCyan-600 transition flex items-center gap-1.5">
+                                        ${tutor.name}
+                                        <i class="fa-solid fa-certificate text-brandCyan-500 text-xs" title="Guru Terverifikasi"></i>
+                                    </h3>
+                                    <div class="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5">
+                                        <span class="font-extrabold text-amber-500 flex items-center gap-1">
+                                            <i class="fa-solid fa-star text-xs"></i> ${tutor.rating}
+                                        </span>
+                                        <span class="text-slate-400">(${tutor.reviewCount} ulasan)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Headline & Bio Snippet -->
+                            <p class="text-xs font-bold text-slate-700 mb-1.5 line-clamp-1">${tutor.headline}</p>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-3">${tutor.bio}</p>
+
+                            <!-- Lokasi Badge -->
+                            <div class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 mb-3 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-100">
+                                <i class="fa-solid fa-location-dot text-brandPink-400 flex-shrink-0"></i>
+                                <span class="truncate">${tutor.location}</span>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-1 mb-2">
+                                ${tagsHtml}
+                            </div>
+
+                        </div>
+
+                        <!-- Footer Kartu: Tarif, Jam Pertama Gratis & Tombol Hubungi -->
+                        <div class="px-6 py-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
+                            <div>
+                                <p class="text-base font-extrabold text-slate-900">${formattedRate}<span class="text-[11px] font-normal text-slate-400">/jam</span></p>
+                                <span class="inline-block text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                                    🎁 1 jam pertama gratis
+                                </span>
+                            </div>
+                            <button onclick="openTutorDetail('${tutor.id}')" class="px-4 py-2 rounded-xl bg-brandCyan-500 hover:bg-brandCyan-600 text-white text-xs font-bold shadow-sm hover:shadow-md transition">
+                                Lihat Profil
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll(".filter-chip").forEach(el => {
+                el.classList.remove("bg-brandCyan-500", "text-white", "shadow-sm");
+                el.classList.add("bg-slate-100", "text-slate-600");
+            });
+            const activeChip = document.getElementById("chip-" + cat);
+            if (activeChip) {
+                activeChip.classList.remove("bg-slate-100", "text-slate-600");
+                activeChip.classList.add("bg-brandCyan-500", "text-white", "shadow-sm");
+            }
+            renderTutors();
+        }
+
+        function setFormat(fmt) {
+            currentFormat = fmt;
+            document.querySelectorAll(".format-btn").forEach(el => {
+                el.classList.remove("bg-white", "text-slate-800", "shadow-xs");
+                el.classList.add("text-slate-600");
+            });
+            const activeBtn = document.getElementById("fmt-" + fmt);
+            if (activeBtn) {
+                activeBtn.classList.add("bg-white", "text-slate-800", "shadow-xs");
+                activeBtn.classList.remove("text-slate-600");
+            }
+            renderTutors();
+        }
+
+        function applyFilters() {
+            renderTutors();
+        }
+
+        function handleSearchKey(event) {
+            if (event.key === "Enter") {
+                executeSearch();
+            }
+        }
+
+        function executeSearch() {
+            const hVal = document.getElementById("headerSearchInput").value;
+            const mVal = document.getElementById("mobileSearchInput") ? document.getElementById("mobileSearchInput").value : "";
+            currentSearchQuery = hVal || mVal || "";
+            renderTutors();
+
+            // Scroll ke bagian grid
+            document.getElementById("tutorGrid").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetFilters() {
+            currentCategory = "all";
+            currentFormat = "all";
+            currentSearchQuery = "";
+            document.getElementById("headerSearchInput").value = "";
+            if (document.getElementById("mobileSearchInput")) document.getElementById("mobileSearchInput").value = "";
+            setCategory("all");
+            setFormat("all");
+            renderTutors();
+        }
+
+        /* ==========================================
+           D. DETAIL PROFIL GURU & BOOKING
+           ========================================== */
+        function openTutorDetail(tutorId) {
+            const tutor = tutorsData.find(t => t.id === tutorId);
+            if (!tutor) return;
+
+            document.getElementById("detailTutorImg").src = tutor.photo;
+            document.getElementById("detailTutorName").innerText = tutor.name;
+            document.getElementById("detailTutorTitle").innerText = tutor.headline;
+            document.getElementById("detailTutorRate").innerText = `Rp ${tutor.ratePerHour.toLocaleString('id-ID')} / jam • 1 Jam Pertama Gratis`;
+            document.getElementById("detailTutorBio").innerText = tutor.bio;
+
+            const tagsHtml = tutor.tags.map(t => `<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold">${t}</span>`).join("");
+            document.getElementById("detailTutorTags").innerHTML = tagsHtml;
+
+            const waMsg = encodeURIComponent(`Halo ${tutor.name}, saya menemukan profil Anda di Superprof Les Privat Bandung. Saya ingin bertanya tentang jadwal les privat dan klaim 1 jam pertama gratis.`);
+            document.getElementById("btnWhatsappBooking").href = `https://wa.me/6281234567890?text=${waMsg}`;
+
+            document.getElementById("tutorModal").classList.remove("hidden");
+        }
+
+        function openTutorBooking(tutorName) {
+            const waMsg = encodeURIComponent(`Halo ${tutorName}, saya tertarik memesan les privat di Bandung.`);
+            window.open(`https://wa.me/6281234567890?text=${waMsg}`, '_blank');
+        }
+
+        function closeTutorModal() {
+            document.getElementById("tutorModal").classList.add("hidden");
+        }
+
+        /* ==========================================
+           E. PORTAL RAPOR MURID (LOGIKA MODAL & SESSION)
+           ========================================== */
+        function openRaporModal() {
+            document.getElementById("raporModal").classList.remove("hidden");
+            document.getElementById("modalErrorMsg").innerText = "";
+        }
+
+        function closeRaporModal() {
+            document.getElementById("raporModal").classList.add("hidden");
+        }
+
+        function handleModalLogin() {
+            const id = document.getElementById("modalIdInput").value.trim().toUpperCase();
+            const pin = document.getElementById("modalPinInput").value.trim();
+            const errorMsg = document.getElementById("modalErrorMsg");
+            const db = getRaporDatabase();
+
+            if (db[id] && db[id].pin === pin) {
+                const data = db[id];
+                const sisa = data.total_sesi - data.sesi_terpakai;
+                const percent = Math.round((data.sesi_terpakai / data.total_sesi) * 100);
+
+                // Set data tampilan rapor
+                document.getElementById("raporNamaAnak").innerText = data.nama;
+                document.getElementById("raporInfoKelas").innerText = `${data.kelas || 'Kelas 2 SD'} • Pengajar: ${data.tutor || 'Kak Annisaa, S.Pd'}`;
+                document.getElementById("raporTotalSesi").innerText = data.total_sesi;
+                document.getElementById("raporSesiTerpakai").innerText = data.sesi_terpakai;
+                document.getElementById("raporSisaSesi").innerText = sisa;
+                document.getElementById("raporPercentText").innerText = `${percent}% Selesai`;
+                document.getElementById("raporProgressBar").style.width = `${percent}%`;
+
+                // Initials avatar
+                const initials = data.nama.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+                document.getElementById("avatarInitials").innerText = initials;
+
+                // Render list riwayat pertemuan
+                let htmlRiwayat = "";
+                if (data.riwayat && data.riwayat.length > 0) {
+                    data.riwayat.forEach(item => {
+                        htmlRiwayat += `
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs hover:border-brandCyan-300 transition">
+                                <div class="flex items-center justify-between text-[11px] font-semibold text-slate-400 mb-1.5">
+                                    <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar-days text-brandCyan-500"></i> ${item.tanggal}</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 font-extrabold">Nilai: ${item.nilai}</span>
+                                </div>
+                                <h6 class="text-xs font-bold text-slate-800 mb-1">${item.materi}</h6>
+                                <p class="text-xs text-slate-500 bg-slate-50 p-2 rounded-lg italic">
+                                    💬 "${item.catatan}"
+                                </p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    htmlRiwayat = `<p class="text-center text-xs text-slate-400 py-4">Belum ada riwayat pertemuan yang tercatat.</p>`;
+                }
+                document.getElementById("raporRiwayatList").innerHTML = htmlRiwayat;
+
+                // Toggle view
+                document.getElementById("modal-login-view").classList.add("hidden");
+                document.getElementById("modal-dashboard-view").classList.remove("hidden");
+                errorMsg.innerText = "";
+            } else {
+                errorMsg.innerText = "ID Murid atau PIN salah! Periksa kembali data Anda.";
+            }
+        }
+
+        function quickLogin(id, pin) {
+            document.getElementById("modalIdInput").value = id;
+            document.getElementById("modalPinInput").value = pin;
+            handleModalLogin();
+        }
+
+        function logoutRapor() {
+            document.getElementById("modalIdInput").value = "";
+            document.getElementById("modalPinInput").value = "";
+            document.getElementById("modal-login-view").classList.remove("hidden");
+            document.getElementById("modal-dashboard-view").classList.add("hidden");
+            document.getElementById("modalErrorMsg").innerText = "";
+        }
+
+        /* ==========================================
+           F. FAQ ACCORDION TOGGLE
+           ========================================== */
+        function toggleFaq(index) {
+            const ans = document.getElementById("faq-ans-" + index);
+            const icon = document.getElementById("faq-icon-" + index);
+            if (ans.classList.contains("hidden")) {
+                ans.classList.remove("hidden");
+                icon.classList.add("rotate-180");
+            } else {
+                ans.classList.add("hidden");
+                icon.classList.remove("rotate-180");
+            }
+        }
+
+        // Init on load
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTutors();
+            getRaporDatabase();
+        });
+
+        // Close modal on click outside
+        window.onclick = function(event) {
+            const raporModal = document.getElementById("raporModal");
+            const tutorModal = document.getElementById("tutorModal");
+            if (event.target === raporModal) {
+                closeRaporModal();
+            }
+            if (event.target === tutorModal) {
+                closeTutorModal();
+            }
+        }
+    </script>
 </body>
 </html>
